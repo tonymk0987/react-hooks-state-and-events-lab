@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useRef } from "react";
 
 function Item({ name, category }) {
+  const liRef = useRef(null);
+
+  const handleAddToCart = () => {
+    if (liRef.current) {
+      liRef.current.classList.add("in-cart");
+    }
+  };
+
   return (
-    <li className="">
+    <li ref={liRef} className="">
       <span>{name}</span>
       <span className="category">{category}</span>
-      <button className="add">Add to Cart</button>
+      <button className="add" onClick={handleAddToCart}>
+        Add to Cart
+      </button>
     </li>
   );
 }
